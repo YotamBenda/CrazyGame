@@ -555,8 +555,8 @@ GameObject:
   - component: {fileID: 1095951912}
   - component: {fileID: 1095951911}
   - component: {fileID: 1095951910}
-  - component: {fileID: 1095951909}
   - component: {fileID: 1095951913}
+  - component: {fileID: 1095951909}
   - component: {fileID: 1095951914}
   m_Layer: 0
   m_Name: PlayerCube
