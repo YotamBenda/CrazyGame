@@ -12,8 +12,6 @@ public class Player_Movement : MonoBehaviour
     private bool shouldMove = true;
 
     [Header("ClampMovement")]
-    [SerializeField] private float X_MAX;
-    [SerializeField] private float X_MIN;
     [SerializeField] private float Y_MAX;
     [SerializeField] private float Y_MIN;
 
@@ -51,7 +49,6 @@ public class Player_Movement : MonoBehaviour
     private void ClampMovement()
     {
         Vector3 clampedPos = transform.position;
-        clampedPos.x = Mathf.Clamp(clampedPos.x, X_MIN, X_MAX);
         clampedPos.y = Mathf.Clamp(clampedPos.y, Y_MIN, Y_MAX);
         transform.position = clampedPos;
     }
@@ -64,7 +61,7 @@ public class Player_Movement : MonoBehaviour
         else
         {
             transform.position += Vector3.forward * speed * Time.deltaTime;
-            cam.transform.position += Vector3.forward * speed * Time.deltaTime;
+            //cam.transform.position += Vector3.forward * speed * Time.deltaTime; 
         }
     }
 
