@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public delegate void GameWon();
     public event GameWon gameWon;
 
+    public delegate void GameWonUI();
+    public event GameWonUI gameWonUI;
+
     public delegate void GameLost();
     public event GameLost gameLost;
     #endregion
@@ -19,5 +22,10 @@ public class GameManager : MonoBehaviour
     public void GameLostInvoke()
     {
         gameLost?.Invoke();
+    }
+
+    public void GameWonUIInvoke()
+    {
+        gameWonUI.Invoke();
     }
 }

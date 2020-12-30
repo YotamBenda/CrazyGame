@@ -14,6 +14,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float speed = 20f;
     [SerializeField] private float pushForce = 10;
     private bool shouldMove;
+    private bool gameWon = false;
 
     [Header("ClampMovement")]
     [SerializeField] private float Y_MAX;
@@ -30,7 +31,6 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         Movement();
-        ClampMovement();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -40,6 +40,7 @@ public class Player_Movement : MonoBehaviour
         {
             case "Obstacle": //Lose condition
                 {
+                    gameWon = false;
                     shouldMove = false;
                     lean.enabled = false;
                     rb.constraints = RigidbodyConstraints.None;
@@ -49,6 +50,8 @@ public class Player_Movement : MonoBehaviour
                 }
             case "FinishLine": //Win condition
                 {
+                    collision.collider.isTrigger = true;
+                    gameWon = true;
                     shouldMove = false;
                     lean.enabled = false;
                     rb.constraints = RigidbodyConstraints.None;
@@ -70,13 +73,21 @@ public class Player_Movement : MonoBehaviour
     {
         if (shouldMove == false)
         {
-            rb.AddForce(Vector3.forward * pushForce, ForceMode.Acceleration);
-            return;
+            if (gameWon)
+            {
+                return;
+            }
+            else
+            {
+                rb.AddForce(Vector3.forward * pushForce, ForceMode.Acceleration);
+                return;
+            }
         }
 
         else
         {
             transform.position += Vector3.forward * speed * Time.deltaTime;
+            ClampMovement();
         }
     }
 

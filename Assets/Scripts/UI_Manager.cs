@@ -12,10 +12,6 @@ public class UI_Manager : MonoBehaviour
     private Player_Stacks stacks;
     private GameManager gameManager;
 
-    [Header("Game Status")]
-    public static bool gameOver = false;
-    public static bool gameWon = false;
-
     [Header("Menus")]
     [SerializeField] private GameObject overlay;
     [SerializeField] private GameObject loseMenu;
@@ -24,13 +20,7 @@ public class UI_Manager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI totalAmount;
-    [SerializeField] private Button pauseMenuButton;
-
-    private void Awake()
-    {
-        gameOver = false;
-        gameWon = false;
-    }
+    [SerializeField] private TextMeshProUGUI finalScore;
 
     private void Start()
     {
@@ -38,7 +28,7 @@ public class UI_Manager : MonoBehaviour
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.gameWon += GameWon;
         gameManager.gameLost += GameLost;
-
+        gameManager.gameWonUI += GameWonUI;
     }
 
     private void Update()
@@ -50,8 +40,13 @@ public class UI_Manager : MonoBehaviour
     {
         overlay.SetActive(false);
         totalAmount.enabled = false;
+    }
+    
+    public void GameWonUI()
+    {
         winMenu.SetActive(true);
     }
+
     private void GameLost()
     {
         overlay.SetActive(false);

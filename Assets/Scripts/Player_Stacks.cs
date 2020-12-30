@@ -6,10 +6,11 @@ public class Player_Stacks : MonoBehaviour
 {
     [Header("Stack Attributes")]
     private Stack stack = new Stack();
+    public int stackAmount = 0;
+
     private Vector3 firstOffset = new Vector3(0, -0.5f, 0);
     private Vector3 secondOffset = new Vector3(0, -1f, 0);
     private Vector3 stackedScale = new Vector3(1, 0.5f, 1);
-    public float stackAmount = 0;
 
     public void AddToStack(GameObject go)
     {
@@ -33,6 +34,12 @@ public class Player_Stacks : MonoBehaviour
     {
         if(stack.Count>0)
         stack.Pop();
+    }
+
+    public int GetCurrenStacks()
+    {
+        Debug.Log(stack.Count);
+        return stack.Count;
     }
     
 }
