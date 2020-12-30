@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-    [Header("InitInfo")]
+    [Header("Inits")]
     private Camera cam;
+    private GameManager gm;
 
     [Header("Player Attributes")]
     [SerializeField] private float speed = 20f;
-    private bool shouldMove = true;
+    private bool shouldMove;
 
     [Header("ClampMovement")]
     [SerializeField] private float Y_MAX;
@@ -19,6 +20,8 @@ public class Player_Movement : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        shouldMove = true;
+        gm = GameObject.FindObjectOfType<GameManager>();
     }
     void Update()
     {
@@ -34,13 +37,13 @@ public class Player_Movement : MonoBehaviour
             case "Obstacle": //Lose condition
                 {
                     shouldMove = false;
-                    UI_Manager.gameOver = true;
+                    gm.GameLostInvoke();
                     break;
                 }
             case "FinishLine": //Win condition
                 {
                     shouldMove = false;
-                    UI_Manager.gameWon = true;
+                    gm.GameWonInvoke();
                     break;
                 }
         }
@@ -56,12 +59,13 @@ public class Player_Movement : MonoBehaviour
     private void Movement()
     {
         if (shouldMove == false)
+        {
             return;
+        }
 
         else
         {
             transform.position += Vector3.forward * speed * Time.deltaTime;
-            //cam.transform.position += Vector3.forward * speed * Time.deltaTime; 
         }
     }
 

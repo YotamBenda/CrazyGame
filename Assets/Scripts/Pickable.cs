@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour
 {
-    private bool isStacked = false;
-    private Player_Stacks stacks;
-    [SerializeField] private Mesh stackedMesh;
+    [Header("Inits")]
     private MeshFilter currMesh;
     private BoxCollider coll;
     private Animator anim;
+    private Player_Stacks stacks;
+
+    [Header("Pickable  Atributes")]
+    private bool isStacked = false;
+    [SerializeField] private Mesh stackedMesh;
+
 
     private void Start()
     {
