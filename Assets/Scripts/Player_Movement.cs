@@ -30,11 +30,21 @@ public class Player_Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Obstacle")
+        var collTag = collision.gameObject.tag;
+        switch (collTag)
         {
-            //enter lose condition
-            shouldMove = false;
-            UI_Manager.gameOver = true;
+            case "Obstacle": //Lose condition
+                {
+                    shouldMove = false;
+                    UI_Manager.gameOver = true;
+                    break;
+                }
+            case "FinishLine": //Win condition
+                {
+                    shouldMove = false;
+                    UI_Manager.gameWon = true;
+                    break;
+                }
         }
     }
 
@@ -48,13 +58,14 @@ public class Player_Movement : MonoBehaviour
 
     private void Movement()
     {
-        if (shouldMove)
+        if (shouldMove == false)
+            return;
+
+        else
         {
             transform.position += Vector3.forward * speed * Time.deltaTime;
             cam.transform.position += Vector3.forward * speed * Time.deltaTime;
         }
-        else
-            return;
     }
 
 }
