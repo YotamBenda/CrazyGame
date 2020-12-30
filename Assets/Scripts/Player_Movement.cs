@@ -9,6 +9,7 @@ public class Player_Movement : MonoBehaviour
     private GameManager gm;
     private Lean.Touch.LeanDragTranslate lean;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private GameObject finishFX;
 
     [Header("Player Attributes")]
     [SerializeField] private float speed = 20f;
@@ -57,6 +58,7 @@ public class Player_Movement : MonoBehaviour
                     rb.constraints = RigidbodyConstraints.None;
                     cam.transform.SetParent(null);
                     gm.GameWonInvoke();
+                    Instantiate(finishFX, transform.position, Quaternion.identity);
                     break;
                 }
         }

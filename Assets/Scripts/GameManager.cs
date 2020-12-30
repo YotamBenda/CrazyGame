@@ -15,13 +15,12 @@ public class GameManager : MonoBehaviour
     public event GameLost gameLost;
     #endregion
 
-    [Header("UI Timing")]
-    private bool shouldCount = false;
-    private float animTime;
-    private float timer;
+    [Header("Ending Timing")]
+    [SerializeField] private Animator camAnim;
 
     public void GameWonInvoke()
     {
+        camAnim.enabled = true;
         gameWon?.Invoke();
     }
     public void GameLostInvoke()
