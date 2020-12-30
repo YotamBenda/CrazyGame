@@ -5,10 +5,13 @@ using UnityEngine;
 public class Pickable : MonoBehaviour
 {
     [Header("Inits")]
-    private MeshFilter currMesh;
-    private BoxCollider coll;
-    private Animator anim;
     private Player_Stacks stacks;
+    private GameManager gm;
+    private Animator anim;
+    [SerializeField] private MeshFilter currMesh;
+    [SerializeField] private BoxCollider coll;
+    [SerializeField] private Rigidbody rb;
+    
 
     [Header("Pickable  Atributes")]
     private bool isStacked = false;
@@ -17,9 +20,11 @@ public class Pickable : MonoBehaviour
 
     private void Start()
     {
-        currMesh = gameObject.GetComponent<MeshFilter>();
-        coll = gameObject.GetComponent<BoxCollider>();
         anim = gameObject.GetComponent<Animator>();
+        gm = GameObject.FindObjectOfType<GameManager>();
+        gm.gameLost += DropBox;
+        gm.gameWon += DropBox;
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -33,12 +38,25 @@ public class Pickable : MonoBehaviour
             transform.SetParent(other.transform, false);
             stacks.AddToStack(gameObject);
             isStacked = true;
+            coll.isTrigger = false;
         }
-        else if (other.gameObject.tag == "Obstacle" && isStacked)
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Obstacle" && isStacked)
         {
             transform.SetParent(null);
+            DropBox();
             stacks.RemoveFromStack();
         }
+    }
+
+    private void DropBox()
+    {
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.None;
     }
 
 }

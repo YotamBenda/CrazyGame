@@ -7,9 +7,12 @@ public class Player_Movement : MonoBehaviour
     [Header("Inits")]
     private Camera cam;
     private GameManager gm;
+    private Lean.Touch.LeanDragTranslate lean;
+    [SerializeField] private Rigidbody rb;
 
     [Header("Player Attributes")]
     [SerializeField] private float speed = 20f;
+    [SerializeField] private float pushForce = 10;
     private bool shouldMove;
 
     [Header("ClampMovement")]
@@ -19,6 +22,7 @@ public class Player_Movement : MonoBehaviour
 
     private void Start()
     {
+        lean = gameObject.GetComponent<Lean.Touch.LeanDragTranslate>();
         cam = Camera.main;
         shouldMove = true;
         gm = GameObject.FindObjectOfType<GameManager>();
@@ -37,12 +41,18 @@ public class Player_Movement : MonoBehaviour
             case "Obstacle": //Lose condition
                 {
                     shouldMove = false;
+                    lean.enabled = false;
+                    rb.constraints = RigidbodyConstraints.None;
+                    cam.transform.SetParent(null);
                     gm.GameLostInvoke();
                     break;
                 }
             case "FinishLine": //Win condition
                 {
                     shouldMove = false;
+                    lean.enabled = false;
+                    rb.constraints = RigidbodyConstraints.None;
+                    cam.transform.SetParent(null);
                     gm.GameWonInvoke();
                     break;
                 }
@@ -60,6 +70,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (shouldMove == false)
         {
+            rb.AddForce(Vector3.forward * pushForce, ForceMode.Acceleration);
             return;
         }
 
