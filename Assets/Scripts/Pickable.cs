@@ -11,6 +11,7 @@ public class Pickable : MonoBehaviour
     [SerializeField] private MeshFilter currMesh;
     [SerializeField] private BoxCollider coll;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private GameObject pickupFX;
     
 
     [Header("Pickable  Atributes")]
@@ -34,7 +35,7 @@ public class Pickable : MonoBehaviour
             currMesh.mesh = stackedMesh;
             coll.size = Vector3.one;
             anim.enabled = false;
-            //*** instantiate picking up particle effect 
+            Instantiate(pickupFX,transform.position, Quaternion.identity); 
             transform.SetParent(other.transform, false);
             stacks.AddToStack(gameObject);
             isStacked = true;

@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3005993261048173430}
-  m_Mesh: {fileID: -4391994113365672144, guid: f4afce8ce3b9f054295fc0d8e713f849, type: 3}
+  m_Mesh: {fileID: -4391994113365672144, guid: 8b50ce76a9ee81a438e4491bf5166e48, type: 3}
 --- !u!23 &3570150528474982314
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -126,4 +126,6 @@ MonoBehaviour:
   currMesh: {fileID: 7113208657586117459}
   coll: {fileID: 6527549740898437757}
   rb: {fileID: -3331357614632849398}
+  pickupFX: {fileID: 4744650506672544961, guid: 534d0b653491b124c9d212d5dc3ca8b6,
+    type: 3}
   stackedMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
