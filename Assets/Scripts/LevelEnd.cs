@@ -10,6 +10,8 @@ public class LevelEnd : MonoBehaviour
     private Camera cam;
     [SerializeField] private Animator EndingAnimation;
 
+    public static int multiplier;
+
     private void Start()
     {
         gm = GameObject.FindObjectOfType<GameManager>();
@@ -22,36 +24,44 @@ public class LevelEnd : MonoBehaviour
     {
         int currStacks = stacks.GetCurrenStacks();
         
-        if(currStacks ==0)
+        if(currStacks == 0)
+        {
             EndingAnimation.SetInteger("MultiplyAmount", 0);
+            multiplier = 1;
+        }
 
         if (currStacks >= 3 && currStacks < 5)
+        {
             EndingAnimation.SetInteger("MultiplyAmount", 10);
+            multiplier = 10;
+        }
 
 
         if (currStacks >= 5 && currStacks < 7)
         {
             EndingAnimation.SetInteger("MultiplyAmount", 20);
-            return;
+            multiplier = 20;
         }
 
         if (currStacks >= 7 && currStacks < 9)
         {
             EndingAnimation.SetInteger("MultiplyAmount", 30);
-            return;
+            multiplier = 30;
         }
 
         if (currStacks >= 9 && currStacks < 11)
         {
             EndingAnimation.SetInteger("MultiplyAmount", 40);
-            return;
+            multiplier = 40;
         }
+
 
         if (currStacks >= 11)
         {
             EndingAnimation.SetInteger("MultiplyAmount", 50);
-            return;
+            multiplier = 50;
         }
 
+        gm.GameWonUIInvoke();
     }
 }

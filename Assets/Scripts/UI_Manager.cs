@@ -44,6 +44,12 @@ public class UI_Manager : MonoBehaviour
     
     public void GameWonUI()
     {
+        finalScore.text = (stacks.stackAmount * LevelEnd.multiplier).ToString();
+        StartCoroutine("Timer");
+    }
+    private IEnumerator Timer()
+    {
+        yield return new WaitForSeconds(4.5f);
         winMenu.SetActive(true);
     }
 

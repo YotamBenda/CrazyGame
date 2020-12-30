@@ -38,7 +38,6 @@ public class Player_Stacks : MonoBehaviour
 
     public int GetCurrenStacks()
     {
-        Debug.Log(stack.Count);
         return stack.Count;
     }
     

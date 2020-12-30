@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public event GameLost gameLost;
     #endregion
 
+    [Header("UI Timing")]
+    private bool shouldCount = false;
+    private float animTime;
+    private float timer;
+
     public void GameWonInvoke()
     {
         gameWon?.Invoke();
@@ -26,6 +31,6 @@ public class GameManager : MonoBehaviour
 
     public void GameWonUIInvoke()
     {
-        gameWonUI.Invoke();
+        gameWonUI?.Invoke();
     }
 }
