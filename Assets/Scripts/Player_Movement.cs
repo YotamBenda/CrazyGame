@@ -9,6 +9,7 @@ public class Player_Movement : MonoBehaviour
 
     [Header("Player Attributes")]
     [SerializeField] private float speed = 20f;
+    private bool shouldMove = true;
 
     [Header("ClampMovement")]
     [SerializeField] private float X_MAX;
@@ -23,8 +24,7 @@ public class Player_Movement : MonoBehaviour
     }
     void Update()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
-        cam.transform.position += Vector3.forward * speed * Time.deltaTime;
+        Movement();
         ClampMovement();
     }
 
@@ -33,6 +33,8 @@ public class Player_Movement : MonoBehaviour
         if(collision.gameObject.tag == "Obstacle")
         {
             //enter lose condition
+            shouldMove = false;
+            UI_Manager.gameOver = true;
         }
     }
 
@@ -44,5 +46,15 @@ public class Player_Movement : MonoBehaviour
         transform.position = clampedPos;
     }
 
+    private void Movement()
+    {
+        if (shouldMove)
+        {
+            transform.position += Vector3.forward * speed * Time.deltaTime;
+            cam.transform.position += Vector3.forward * speed * Time.deltaTime;
+        }
+        else
+            return;
+    }
 
 }
