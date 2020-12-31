@@ -58,7 +58,7 @@ public class Player_Movement : MonoBehaviour
                     rb.constraints = RigidbodyConstraints.None;
                     cam.transform.SetParent(null);
                     gm.GameWonInvoke();
-                    Instantiate(finishFX, transform.position, Quaternion.identity);
+                    Instantiate(finishFX, collision.transform.position, Quaternion.identity);
                     break;
                 }
         }
