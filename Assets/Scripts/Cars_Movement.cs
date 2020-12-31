@@ -13,13 +13,12 @@ public class Cars_Movement : MonoBehaviour
         transform.localPosition += Vector3.back * speed * Time.deltaTime;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("hit" + other.gameObject.name);
-        if(other.gameObject.tag == "CarsRoadEnd")
-        {
-            Debug.Log("car reached end");
-            transform.position = startPoint.transform.position;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("hit" + other.gameObject.name);
+    //    if(other.gameObject.tag == "CarsRoadEnd")
+    //    {
+    //        transform.position = startPoint.transform.position;
+    //    }
+    //}
 }

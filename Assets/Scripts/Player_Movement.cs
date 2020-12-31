@@ -93,4 +93,14 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
+    #region Debugging options
+    public void DroneSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+
+
+    #endregion
+
 }

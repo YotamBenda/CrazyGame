@@ -11,6 +11,7 @@ public class UI_Manager : MonoBehaviour
     [Header("Inits")]
     private Player_Stacks stacks;
     private GameManager gameManager;
+    [SerializeField] private Lean.Touch.LeanDragTranslate lean;
 
     [Header("Menus")]
     [SerializeField] private GameObject overlay;
@@ -64,6 +65,7 @@ public class UI_Manager : MonoBehaviour
     {
         overlay.SetActive(false);
         pauseMenu.SetActive(true);
+        lean.enabled = false;
         Time.timeScale = 0;
     }
 
@@ -71,6 +73,7 @@ public class UI_Manager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         overlay.SetActive(true);
+        lean.enabled = true;
         Time.timeScale = 1;
     }
 
