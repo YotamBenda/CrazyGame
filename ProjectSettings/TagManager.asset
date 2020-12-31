@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - FinishLine
+  - CarsRoadEnd
   layers:
   - Default
   - TransparentFX
