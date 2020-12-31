@@ -18,7 +18,7 @@ namespace Lean.Touch
 		/// 1 = Default.
 		/// 2 = Double.</summary>
 		[Tooltip("The sensitivity of the translation.\n\n1 = Default.\n2 = Double.")]
-		public float Sensitivity = 1.0f;
+		public float Sensitivity = 2.5f;
 
 		/// <summary>If you want this component to change smoothly over time, then this allows you to control how quick the changes reach their target value.
 		/// -1 = Instantly change.
