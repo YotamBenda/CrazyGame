@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Cars_Manager : MonoBehaviour
 {
+    #region Events
+    public delegate void ChangeSpeed(float speed);
+    public event ChangeSpeed changeSpeed;
+    #endregion
+
+
     [Header("Instantiate")]
     [SerializeField] private GameObject[] spawnPoints;
-    [SerializeField] private float spawnTimer = 5f;
+    public float spawnTimer = 5f;
+    public float carSpeed = 8f;
     [SerializeField] private GameObject[] cars;
 
-    private float count = 3f;
+    private float count = 0.1f;
 
     void Update()
     {
@@ -36,5 +43,19 @@ public class Cars_Manager : MonoBehaviour
         yield return new WaitForSeconds(spawnTimer);
     }
 
+    #region Debugging options
+    public void VehiclesSpeed(float speed)
+    {
+        carSpeed = speed;
+        changeSpeed?.Invoke(speed);
+    }
+
+    public void VehiclesSpawn(float spawn)
+    {
+        spawnTimer = spawn;
+        count = spawn;
+    }
+
+    #endregion
 
 }

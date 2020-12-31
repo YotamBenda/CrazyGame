@@ -5,20 +5,24 @@ using UnityEngine;
 public class Cars_Movement : MonoBehaviour
 {
     [Header("Car's Attributes")]
-    [SerializeField] private float speed = 5f; //debug
+    public float speed = 8f;
     [SerializeField] private GameObject startPoint;
+    private Cars_Manager carManager;
+
+    private void Start()
+    {
+        carManager = GameObject.FindObjectOfType<Cars_Manager>();
+        carManager.changeSpeed += ChangeSpeed;
+        speed = carManager.carSpeed;
+    }
 
     void Update()
     {
         transform.localPosition += Vector3.back * speed * Time.deltaTime;
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("hit" + other.gameObject.name);
-    //    if(other.gameObject.tag == "CarsRoadEnd")
-    //    {
-    //        transform.position = startPoint.transform.position;
-    //    }
-    //}
+    public void ChangeSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
 }

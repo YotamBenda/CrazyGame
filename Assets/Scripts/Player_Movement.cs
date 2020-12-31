@@ -12,7 +12,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private GameObject finishFX;
 
     [Header("Player Attributes")]
-    [SerializeField] private float speed = 20f;
+    public float speed = 20f;
     [SerializeField] private float pushForce = 10;
     private bool shouldMove;
     private bool gameWon = false;

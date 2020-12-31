@@ -167,5 +167,17 @@ namespace Lean.Touch
 				Debug.LogError("Failed to find camera. Either tag your camera as MainCamera, or set one in this component.", this);
 			}
 		}
+
+        #region Debugging options
+		public void DroneSens(float newSens)
+        {
+			Sensitivity = newSens;
+        }
+		public void DroneDamp(float newDamp)
+		{
+			Dampening = newDamp;
+		}
+
+		#endregion
 	}
 }
